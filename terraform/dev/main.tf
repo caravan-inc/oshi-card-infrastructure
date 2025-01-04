@@ -3,3 +3,11 @@ provider "google" {
   region  = var.gcp_region
   zone    = "${var.gcp_region}-a"
 }
+
+module "network" {
+  source = "../modules/network"
+}
+
+module "gce" {
+  source = "../modules/gce"
+}
