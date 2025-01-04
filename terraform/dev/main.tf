@@ -9,5 +9,6 @@ module "network" {
 }
 
 module "gce" {
-  source = "../modules/gce"
+  source     = "../modules/gce"
+  network_id = module.network.network_id
 }
