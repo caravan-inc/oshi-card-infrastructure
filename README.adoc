@@ -13,3 +13,10 @@ gcloud init
 ----
 gcloud auth application-default login
 ----
+
+=== Apply Terraform
+
+[source,shell]
+----
+terraform apply -var-file=vars.tfvars -auto-approve
+----
