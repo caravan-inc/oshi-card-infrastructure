@@ -15,6 +15,12 @@ resource "google_project_iam_member" "cloud_sql_client" {
   member  = "serviceAccount:${google_service_account.cloud_run.email}"
 }
 
+resource "google_project_iam_member" "cloud_storage_client" {
+  project = var.project_id
+  role    = "roles/storage.objectCreator"
+  member  = "serviceAccount:${google_service_account.cloud_run.email}"
+}
+
 resource "google_cloud_run_v2_service" "main" {
   name     = "server"
   location = var.region

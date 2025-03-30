@@ -20,6 +20,11 @@ module "sql" {
   cloud_run_service_account = module.cloudrun.service_account
 }
 
+module "storage" {
+  source = "../modules/gcs"
+  region = var.gcp_region
+}
+
 module "cloudrun" {
   source                  = "../modules/cloudrun"
   project_id              = var.gcp_project_id
