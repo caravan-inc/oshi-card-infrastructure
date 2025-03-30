@@ -88,13 +88,3 @@ resource "google_cloud_run_service_iam_member" "public_access" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
-
-resource "google_cloud_run_service_iam_binding" "binding" {
-  location = google_cloud_run_v2_service.main.location
-  project  = google_cloud_run_v2_service.main.project
-  service  = google_cloud_run_v2_service.main.name
-  role     = "roles/run.invoker"
-  members = [
-    "serviceAccount:${google_service_account.cloud_run.email}",
-  ]
-}
