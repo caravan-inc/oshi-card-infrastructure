@@ -7,3 +7,8 @@ resource "google_project_service" "compute-service" {
   project = var.gcp_project_id
   service = "compute.googleapis.com"
 }
+
+resource "google_project_service" "artifact-registry-service" {
+  project = var.gcp_project_id
+  service = "artifactregistry.googleapis.com"
+}

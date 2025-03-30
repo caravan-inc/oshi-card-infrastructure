@@ -9,8 +9,7 @@ module "network" {
   region = var.gcp_region
 }
 
-module "gce" {
-  source     = "../modules/gce"
-  network_id = module.network.network_id
-  zone = "${var.gcp_region}-a"
+module "artifact" {
+  source     = "../modules/artifact"
+  region = var.gcp_region
 }
