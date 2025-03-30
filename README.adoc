@@ -1,0 +1,15 @@
+= Terraform
+
+== Initialize Terraform
+
+=== Auth Google Cloud
+
+[source,shell]
+----
+gcloud init
+----
+
+[source,shell]
+----
+gcloud auth application-default login
+----
