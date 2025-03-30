@@ -20,3 +20,10 @@ gcloud auth application-default login
 ----
 terraform apply -var-file=vars.tfvars -auto-approve
 ----
+
+=== Get Cloud Run URL
+
+[source,shell]
+----
+gcloud run services describe server --region asia-northeast1 --format="value(status.url)"
+----
