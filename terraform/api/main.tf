@@ -12,3 +12,8 @@ resource "google_project_service" "artifact-registry-service" {
   project = var.gcp_project_id
   service = "artifactregistry.googleapis.com"
 }
+
+resource "google_project_service" "cloud-run-service" {
+  project = var.gcp_project_id
+  service = "run.googleapis.com"
+}
