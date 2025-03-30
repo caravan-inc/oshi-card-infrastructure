@@ -5,3 +5,15 @@ variable "project_id" {
 variable "region" {
   description = "Region"
 }
+
+variable "secret_version" {
+  description = "DB password secret version"
+}
+
+variable "secret_id" {
+  description = "DB password secret id"
+}
+
+variable "cloud_sql_instance_name" {
+  description = "Cloud SQL instance name"
+}
