@@ -1,3 +1,3 @@
-variable region {
+variable "region" {
   description = "Region"
 }

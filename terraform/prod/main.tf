@@ -10,7 +10,7 @@ module "network" {
 }
 
 module "artifact" {
-  source     = "../modules/artifact"
+  source = "../modules/artifact"
   region = var.gcp_region
 }
 
