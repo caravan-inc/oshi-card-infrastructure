@@ -1,0 +1,8 @@
+= API
+
+== Apply
+
+[source,shell]
+----
+terraform apply -var-file=../prod/vars.tfvars
+----
