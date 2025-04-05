@@ -124,6 +124,11 @@ resource "google_cloud_run_v2_service" "loki" {
     containers {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/oshi-card/loki:latest"
 
+      env {
+        name  = "GCS_BUCKET_NAME"
+        value = google_storage_bucket.loki-bucket.name
+      }
+
       ports {
         container_port = 8080
       }

@@ -21,7 +21,7 @@ storage_config:
     cache_location: /loki/index_cache
     cache_ttl: 24h # Can be increased for faster performance over longer query periods, uses more disk space
   gcs:
-    bucket_name: loki-bucket
+    bucket_name: ${GCS_BUCKET_NAME}
 
 schema_config:
   configs:
