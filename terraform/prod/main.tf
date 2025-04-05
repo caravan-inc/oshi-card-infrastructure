@@ -4,11 +4,6 @@ provider "google" {
   zone    = "${var.gcp_region}-a"
 }
 
-module "network" {
-  source = "../modules/network"
-  region = var.gcp_region
-}
-
 module "artifact" {
   source = "../modules/artifact"
   region = var.gcp_region
@@ -34,3 +29,9 @@ module "cloudrun" {
   cloud_sql_instance_name = module.sql.instance_name
 }
 
+
+module "logsink" {
+  source     = "../modules/logsink"
+  project_id = var.gcp_project_id
+  region     = var.gcp_region
+}

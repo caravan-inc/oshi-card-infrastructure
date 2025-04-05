@@ -1,0 +1,22 @@
+server:
+  http_listen_port: 8080
+  grpc_listen_port: 0
+
+clients:
+  - url: ${TARGET_URL}
+
+scrape_configs:
+  - job_name: gcplog
+    gcplog:
+      subscription_type: "pull"
+      project_id: ${PROJECT_ID}
+      subscription: ${SUBSCRIPTION_ID}
+      use_incoming_timestamp: false # default rewrite timestamps.
+      use_full_line: false # default use textPayload as log line.
+      labels:
+        job: "gcplog"
+    relabel_configs:
+      - source_labels: ["__gcp_resource_type"]
+        target_label: "resource_type"
+      - source_labels: ["__gcp_resource_labels_project_id"]
+        target_label: "project"
