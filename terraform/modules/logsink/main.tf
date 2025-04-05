@@ -71,12 +71,12 @@ resource "google_cloud_run_v2_service" "promtail" {
 
       env {
         name  = "SUBSCRIPTION_ID"
-        value = google_pubsub_subscription.cloud-log-subscription.id
+        value = google_pubsub_subscription.cloud-log-subscription.name
       }
 
       env {
         name  = "TARGET_URL"
-        value = "https://${google_cloud_run_v2_service.loki.id}.${var.region}.run.app/loki/api/v1/push"
+        value = "${google_cloud_run_v2_service.loki.uri}/loki/api/v1/push"
       }
 
       resources {
