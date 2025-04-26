@@ -31,7 +31,8 @@ module "cloudrun" {
 
 
 module "logsink" {
-  source     = "../modules/logsink"
-  project_id = var.gcp_project_id
-  region     = var.gcp_region
+  source           = "../modules/logsink"
+  project_id       = var.gcp_project_id
+  region           = var.gcp_region
+  inclusion_filter = "severity>=WARNING"
 }
