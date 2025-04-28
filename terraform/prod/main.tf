@@ -37,7 +37,6 @@ module "cloudrun" {
   redis_port              = module.redis.port
 }
 
-
 module "logsink" {
   source           = "../modules/logsink"
   project_id       = var.gcp_project_id

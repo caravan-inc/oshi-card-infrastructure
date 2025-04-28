@@ -21,6 +21,12 @@ resource "google_project_iam_member" "cloud_storage_client" {
   member  = "serviceAccount:${google_service_account.cloud_run.email}"
 }
 
+resource "google_pubsub_topic_iam_member" "pubsub-publisher" {
+  topic  = google_pubsub_topic.timeline_topic.name
+  role   = "roles/pubsub.publisher"
+  member = "serviceAccount:${google_service_account.cloud_run.email}"
+}
+
 resource "google_cloud_run_v2_service" "main" {
   name     = "server"
   location = var.region
@@ -54,6 +60,16 @@ resource "google_cloud_run_v2_service" "main" {
             version = "1"
           }
         }
+      }
+
+      env {
+        name  = "GCLOUD_PROJECT"
+        value = var.project_id
+      }
+
+      env {
+        name  = "TIMELINE_TOPIC_ID"
+        value = google_pubsub_topic.timeline_topic.name
       }
 
       env {
@@ -99,6 +115,22 @@ resource "google_cloud_run_v2_service" "main" {
 
   depends_on = [var.secret_version]
 }
+
+
+// 本来はpubsubにmoduleを▼分割して、そこに移動させるべき
+resource "google_pubsub_topic" "timeline_topic" {
+  name = "timeline_topic"
+}
+
+resource "google_pubsub_subscription" "timeline_subscription" {
+  name  = "timeline_subscription"
+  topic = google_pubsub_topic.timeline_topic.name
+  push_config {
+    push_endpoint = google_cloud_run_v2_service.main.uri
+  }
+}
+
+// 分割ここまで
 
 resource "google_cloud_run_service_iam_member" "public_access" {
   location = google_cloud_run_v2_service.main.location
