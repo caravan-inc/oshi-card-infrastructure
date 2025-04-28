@@ -20,6 +20,12 @@ module "storage" {
   region = var.gcp_region
 }
 
+module "redis" {
+  source     = "../modules/redis"
+  project_id = var.gcp_project_id
+  region     = var.gcp_region
+}
+
 module "cloudrun" {
   source                  = "../modules/cloudrun"
   project_id              = var.gcp_project_id
@@ -27,6 +33,8 @@ module "cloudrun" {
   secret_version          = module.sql.secret_version
   secret_id               = module.sql.secret_id
   cloud_sql_instance_name = module.sql.instance_name
+  redis_host              = module.redis.host
+  redis_port              = module.redis.port
 }
 
 

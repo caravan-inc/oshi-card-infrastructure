@@ -61,6 +61,16 @@ resource "google_cloud_run_v2_service" "main" {
         value = "unix"
       }
 
+      env {
+        name  = "REDIS_HOST"
+        value = var.redis_host
+      }
+
+      env {
+        name  = "REDIS_PORT"
+        value = var.redis_port
+      }
+
       volume_mounts {
         name       = "cloudsql"
         mount_path = "/cloudsql"
@@ -75,6 +85,14 @@ resource "google_cloud_run_v2_service" "main" {
       name = "cloudsql"
       cloud_sql_instance {
         instances = [var.cloud_sql_instance_name]
+      }
+    }
+
+    vpc_access {
+      // ひとまずデフォルトのVPCを使用
+      network_interfaces {
+        network    = "default"
+        subnetwork = "default"
       }
     }
   }

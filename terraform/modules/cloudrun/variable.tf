@@ -17,3 +17,11 @@ variable "secret_id" {
 variable "cloud_sql_instance_name" {
   description = "Cloud SQL instance name"
 }
+
+variable "redis_host" {
+  description = "Redis host"
+}
+
+variable "redis_port" {
+  description = "Redis port"
+}

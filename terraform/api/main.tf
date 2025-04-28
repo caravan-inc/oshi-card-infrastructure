@@ -27,3 +27,8 @@ resource "google_project_service" "secret-manager-service" {
   project = var.gcp_project_id
   service = "secretmanager.googleapis.com"
 }
+
+resource "google_project_service" "redis-api" {
+  project = var.gcp_project_id
+  service = "redis.googleapis.com"
+}
