@@ -126,7 +126,7 @@ resource "google_pubsub_subscription" "timeline_subscription" {
   name  = "timeline_subscription"
   topic = google_pubsub_topic.timeline_topic.name
   push_config {
-    push_endpoint = google_cloud_run_v2_service.main.uri
+    push_endpoint = "${google_cloud_run_v2_service.main.uri}/timeline"
   }
 }
 
