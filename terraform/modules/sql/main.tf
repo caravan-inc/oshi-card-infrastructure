@@ -15,8 +15,8 @@ resource "google_sql_database_instance" "instance" {
 resource "google_sql_database" "database" {
   name      = "db"
   instance  = google_sql_database_instance.instance.name
-  charset   = "utf8"
-  collation = "utf8_general_ci"
+  charset   = "utf8mb4"
+  collation = "utf8mb4_0900_ai_ci"
 }
 
 resource "google_sql_user" "db_user" {
